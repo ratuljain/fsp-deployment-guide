@@ -11,6 +11,10 @@
     - postgresql-client
     - postgresql-client-common
 
+- name: install setfacl support
+  become: yes
+  apt: pkg=acl
+
 - name: ensure database is created
   postgresql_db: name={{ app_name }}
   sudo: yes

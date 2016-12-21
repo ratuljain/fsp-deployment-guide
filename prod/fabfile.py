@@ -18,7 +18,7 @@ env.password = ''
 
 # all IP address or hostnames of the servers you want to put
 # your SSH keys and authorized_host files on, ex: 192.168.1.1
-env.hosts = ['139.59.38.44']
+env.hosts = ['139.59.41.119']
 
 # your full name for the new non-root user
 env.new_user_full_name = 'Ratul Jain' # ex: Matt Makai
@@ -42,12 +42,13 @@ env.ssh_key_dir = '~/fsp-deployment-guide/ssh_keys'
 def bootstrap():
     local('ssh-keygen -R %s' % env.host_string)
     sed('/etc/ssh/sshd_config', '^UsePAM yes', 'UsePAM no')
-    sed('/etc/ssh/sshd_config', '^PermitRootLogin yes', 'PermitRootLogin no')
-    sed('/etc/ssh/sshd_config', '^#PasswordAuthentication yes',
-        'PasswordAuthentication no')
+    # sed('/etc/ssh/sshd_config', '^PermitRootLogin yes', 'PermitRootLogin no')
+    # sed('/etc/ssh/sshd_config', '^#PasswordAuthentication yes',
+    #     'PasswordAuthentication no')
     _create_privileged_group()
     _create_privileged_user()
     _upload_keys(env.new_user)
+    _install_zsh()
     run('service ssh reload')
 
 
@@ -77,3 +78,9 @@ def _upload_keys(username):
           '/prod_key.pub ' + env.ssh_key_dir + \
           '/authorized_keys ' + \
           username + '@' + env.host_string + ':~/.ssh')
+
+def _install_zsh():
+    run('apt-get install zsh')
+    run('apt-get install git-core')
+    run('wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh')
+    run('chsh -s `which zsh`')

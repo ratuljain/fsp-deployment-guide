@@ -1,20 +1,15 @@
 ###
 # configures the server and installs the web application
-##
-# - include: ubuntu.yml
-
-# - include: nginx_ssl.yml
-#   when: deploy_ssl
 #
-# - include: nginx_no_ssl.yml
-#   when: not deploy_ssl
+- include: ubuntu.yml
+
+- include: nginx_ssl.yml
+  when: deploy_ssl
 
 - include: git.yml
 
-# - include: postgresql.yml
-#
-# - include: redis.yml
+- include: postgresql.yml
 
-# - include: dependencies.yml
+- include: dependencies.yml
+
 - include: wsgi.yml
-- include: celery.yml
