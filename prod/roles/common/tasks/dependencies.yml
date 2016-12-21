@@ -23,14 +23,16 @@
                  app_path={{app_dir}}
                  virtualenv={{venv_dir}}
 
- - name: create static directory for Django app if it does not exist
-   command: mkdir {{app_dir}}/static
-   when: static_dir.stat.isdir is not defined
+# - name: create virtualenv directory if it does not already exist
+#   file: path={{ venv_dir }} state=directory
+# - name: create static directory for Django app if it does not exist
+#   command: mkdir {{app_dir}}/static
+#   when: static_dir.stat.isdir is not defined
 
- - name: Django collectstatic
-   django_manage: command=collectstatic
-                  app_path={{app_dir}}
-                  virtualenv={{venv_dir}}
+- name: Django collectstatic
+  django_manage: command=collectstatic
+                app_path={{app_dir}}
+                virtualenv={{venv_dir}}
 
 
 
