@@ -23,6 +23,16 @@
                  app_path={{app_dir}}
                  virtualenv={{venv_dir}}
 
+ - name: create static directory for Django app if it does not exist
+   command: mkdir {{app_dir}}/static
+   when: static_dir.stat.isdir is not defined
+
+ - name: Django collectstatic
+   django_manage: command=collectstatic
+                  app_path={{app_dir}}
+                  virtualenv={{venv_dir}}
+
+
 
 #
 # - name: create the initial admin user in the database
