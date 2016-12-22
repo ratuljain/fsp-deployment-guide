@@ -29,10 +29,10 @@
 #   command: mkdir {{app_dir}}/static
 #   when: static_dir.stat.isdir is not defined
 
-# - name: Django collectstatic
-#   django_manage: command=collectstatic
-#                 app_path={{app_dir}}
-#                 virtualenv={{venv_dir}}
+- name: Django collectstatic
+  django_manage: command=collectstatic
+                app_path={{app_dir}}
+                virtualenv={{venv_dir}}
 
 
 

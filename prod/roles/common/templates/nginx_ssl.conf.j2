@@ -25,7 +25,7 @@ server {
   # nginx serve up static files and never send to the WSGI server
   location /static {
     autoindex on;
-    alias {{ app_dir }}/{{ app_name }}/static;
+    alias {{ app_dir }}/staticfiles;
   }
 
   location / {
@@ -35,7 +35,7 @@ server {
            if (!-f $request_filename) {
              proxy_pass http://app_server_wsgiapp;
              break;
-    } 
+    }
   }
 
   # this section allows Nginx to reverse proxy for websockets
@@ -53,4 +53,3 @@ server {
     proxy_set_header Connection "Upgrade";
   }
 }
-
