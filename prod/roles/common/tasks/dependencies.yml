@@ -35,7 +35,16 @@
                 virtualenv={{venv_dir}}
 
 
+# - name: Django Generate Reports
+#   django_manage: command: "jenkins --enable-coverage"
+#     app_path: "{{ app_dir }}"
+#     virtualenv={{venv_dir}}
+# - django_manage:
+#     command: "jenkins --enable-coverage"
+#     app_path: "{{ app_dir }}"
 
-#
-# - name: create the initial admin user in the database
-#   shell: ". {{ app_dir }}/.env; {{ venv_python }} {{ app_dir}}/manage.py create_wizard {{ app_admin_user }} {{ app_admin_password }}"
+
+- name: Create coverage and pylint reports
+  django_manage: command=jenkins
+                app_path={{app_dir}}
+                virtualenv={{venv_dir}}
