@@ -3,8 +3,8 @@
 #
 - include: ubuntu.yml
 #
-- include: nginx_ssl.yml
-  when: deploy_ssl
+# - include: nginx_ssl.yml
+#   when: deploy_ssl
 #
 - include: git.yml
 #
