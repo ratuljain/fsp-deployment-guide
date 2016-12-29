@@ -19,7 +19,7 @@ ssl_certs_dir: ~/workspace/fsp-deployment-guide/ssl_cert/
 # Chapter 5: Source Control
 ## this is the local directory with the deploy_key and deploy_key.pub
 ## files. do not include a trailing slash
-local_deploy_key_dir: ~/workspace/fsp-deployment-guide/deploy_key
+local_deploy_key_dir: /var/lib/jenkins/workspace/fsp-deployment-guide
 code_repository: https://github.com/ratuljain1991/Eventify.git
 
 # Chapter 6: Databases
