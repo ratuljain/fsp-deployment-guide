@@ -15,6 +15,7 @@
 
 - name: clone or pull latest web app code
   git: repo={{ code_repository }} dest={{ app_dir }}
+       version= master
        force=yes
        key_file=/home/{{ deploy_user }}/deploy_key/deploy_key
        accept_hostkey=yes
